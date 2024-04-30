@@ -1,5 +1,3 @@
-import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -18,7 +16,7 @@ public class InputProcessing {
             }
 
             try {
-                numberOfPeople = Integer.parseInt(numberOfPeopleInput);
+                numberOfPeople = Integer.parseInt(numberOfPeopleInput.trim());
             } catch (NumberFormatException e) {
                 this.wrongNumberOfPeopleMessage();
                 continue;
@@ -40,19 +38,9 @@ public class InputProcessing {
         double productPrice;
 
         while (true) {
+            productName = scanner.next().trim();
 
-            String inputLine = scanner.nextLine();
-            if (inputLine.isEmpty()) {
-                emptyLineMessage();
-                continue;
-            }
-
-            List<String> inputs = Arrays.stream(inputLine.split(" ")).toList();
-            if (inputs.size() != 2) {
-                this.wrongProductInfoMessage();
-            }
-            productName = inputs.get(0);
-            String productPriceInput = inputs.get(1);
+            String productPriceInput = scanner.nextLine().trim();
 
             try {
                 productPrice = Double.parseDouble(productPriceInput);

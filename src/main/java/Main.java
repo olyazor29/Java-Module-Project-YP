@@ -18,7 +18,7 @@ public class Main {
             System.out.println("Если это был последний товар, введите команду \"Завершить\".\n" +
                     "Чтобы продолжить добавление товаров, введите любой символ:");
 
-            String lastProductOrNot = input.scanner.nextLine();
+            String lastProductOrNot = input.scanner.nextLine().trim();
             if (lastProductOrNot.equalsIgnoreCase("Завершить")){
                 break;
             }
