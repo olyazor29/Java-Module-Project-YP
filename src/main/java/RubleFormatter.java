@@ -1,20 +1,13 @@
-import java.util.Arrays;
 
 public class RubleFormatter {
     public static String getCorrectFormOfRuble(double number) {
-        String getLastDigitBeforePoint = Arrays.stream(String.valueOf(number).
-                        split("\\.")).
-                        toList().
-                        get(0);
 
-        if (getLastDigitBeforePoint.length() > 1) {
+        int lastTwoDigits = (int) Math.floor(number % 100);
+
+        if (lastTwoDigits >= 11 && lastTwoDigits <= 19) {
             return "рублей";
         } else {
-
-            int lastDigit = Integer.parseInt(getLastDigitBeforePoint.substring(
-                    getLastDigitBeforePoint.length() - 1)
-            );
-
+            int lastDigit = lastTwoDigits % 10;
             return switch (lastDigit) {
                 case 1 -> "рубль";
                 case 2, 3, 4 -> "рубля";

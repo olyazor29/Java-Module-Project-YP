@@ -1,17 +1,23 @@
 import java.util.ArrayList;
 
 public class Calculator {
-    double sumOfPrices = 0;
-    ArrayList<Product> listOfProducts = new ArrayList<>();
 
+    private ArrayList<Product> listOfProducts = new ArrayList<>();
 
     public void addNewProduct(Product newProduct) {
-        this.sumOfPrices += newProduct.price;
         listOfProducts.add(newProduct);
     }
 
-    public double calculateSumPerPerson(int numberOfPeople) {
-        return this.sumOfPrices / numberOfPeople;
+    public double calculateSumOfAllPrices() {
+        double sum = 0;
+        for (Product product : this.listOfProducts) {
+            sum += product.price;
+        }
+        return sum;
+    }
+
+    public double calculateSumPerPerson(double sum, int numberOfPeople) {
+        return sum / numberOfPeople;
     }
 
     public void printListOfAddedProducts() {
