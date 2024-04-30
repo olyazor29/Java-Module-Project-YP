@@ -33,25 +33,40 @@ public class InputProcessing {
 
     public Product getNameAndPriceOfProduct() {
         scanner.useLocale(Locale.US);
-
         String productName;
         double productPrice;
 
+        System.out.println("Введите название товара:");
+
         while (true) {
-            productName = scanner.next().trim();
-
-            String productPriceInput = scanner.nextLine().trim();
-
-            try {
-                productPrice = Double.parseDouble(productPriceInput);
-            } catch (NumberFormatException e) {
-                this.wrongProductInfoMessage();
-                continue;
-            }
-            if (productPrice > 0) {
-                break;
+            productName = scanner.nextLine().trim();
+            if (productName.isEmpty()) {
+                this.emptyLineMessage();
             } else {
-                this.wrongProductInfoMessage();
+                break;
+            }
+        }
+
+        System.out.println("Введите стоимость данного товара в формате \"рубли.копейки.\"");
+
+        while (true) {
+            String productPriceInput = scanner.nextLine().trim();
+            if (productPriceInput.isEmpty()) {
+                this.emptyLineMessage();
+            } else {
+
+                try {
+                    productPrice = Double.parseDouble(productPriceInput);
+                } catch (NumberFormatException e) {
+                    this.wrongProductInfoMessage();
+                    continue;
+                }
+
+                if (productPrice > 0) {
+                    break;
+                } else {
+                    this.wrongProductInfoMessage();
+                }
             }
         }
         return new Product(productName, productPrice);
@@ -74,7 +89,6 @@ public class InputProcessing {
     public void wrongProductInfoMessage() {
         System.out.println("""
                 Неверное значение!
-                Необходимо ввести название и стоимость товара.
                 Стоимость товара должна быть представлена в виде положительного числа.
                 Введите данные заново:""");
     }

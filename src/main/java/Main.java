@@ -10,8 +10,6 @@ public class Main {
         Calculator calculator = new Calculator();
 
         while (true) {
-            System.out.println("Введите название товара и его стоимость в формате \"рубли.копейки\":");
-
             calculator.addNewProduct(input.getNameAndPriceOfProduct());
 
             System.out.println("Товар успешно добавлен!");
